@@ -16,11 +16,15 @@ export async function PaginaCatalogo({ categoria }: { categoria?: string }) {
     try {
       const { categorias, produtos } = await carregarCatalogo();
       conteudo = <Catalogo categorias={categorias} produtos={produtos} categoriaInicial={categoria} agora={Date.now()} />;
-    } catch {
+    } catch (e) {
+      const detalhe = e instanceof Error ? e.message : String(e);
+      console.error('Falha ao carregar o catálogo:', detalhe);
       conteudo = (
-        <p className="py-10 text-center text-suave" role="alert">
-          Não deu para carregar os produtos agora. Atualize a página em alguns segundos.
-        </p>
+        <div className="py-10 text-center text-suave" role="alert">
+          <p>Não deu para carregar os produtos agora. Atualize a página em alguns segundos.</p>
+          {/* Mensagem técnica do Supabase, para facilitar o diagnóstico. */}
+          <p className="mt-2 text-xs">Detalhe: {detalhe}</p>
+        </div>
       );
     }
   }
