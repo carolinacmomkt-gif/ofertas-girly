@@ -1,0 +1,11 @@
+# O Netlify detecta o Next.js e instala o runtime oficial sozinho.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+[functions]
+  directory = "netlify/functions"

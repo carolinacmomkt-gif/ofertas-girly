@@ -1,0 +1,73 @@
+@import 'tailwindcss';
+
+/* Design system "girlie": rosa clarinho, vinho e rosé */
+@theme {
+  --color-fundo: #fff5f8;
+  --color-card: #ffffff;
+  --color-elevado: #ffe8f0;
+  --color-borda: #f6cfdd;
+  --color-texto: #3b1f2b;
+  --color-suave: #8a5a6b;
+  --color-rosa-100: #ffd6e5;
+  --color-rosa-300: #f7a8c4;
+  --color-rosa-500: #e76f9a;
+  --color-rosa-700: #c2416f;
+  --color-lilas-100: #e9d8fd;
+  --color-lilas-400: #b794f4;
+  --color-urgencia: #d7263d;
+
+  --font-display: var(--fonte-display), Georgia, serif;
+  --font-sans: var(--fonte-corpo), system-ui, sans-serif;
+
+  --radius-card: 20px;
+  --shadow-card: 0 8px 24px rgba(231, 111, 154, 0.15);
+}
+
+:root {
+  /* Gradiente rosé: só em botões principais, chip ativo, selo de desconto e faixa do topo */
+  --rose: linear-gradient(135deg, #ffe1ec 0%, #f7a8c4 35%, #e76f9a 65%, #f9c5d9 100%);
+  /* Texto em gradiente (preço e @): tons escuros o bastante para contraste AA no branco */
+  --rose-texto: linear-gradient(135deg, #b83268 0%, #d9578a 100%);
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-fundo);
+  color: var(--color-texto);
+  -webkit-font-smoothing: antialiased;
+}
+
+@utility rose {
+  background: var(--rose);
+  color: var(--color-texto);
+}
+
+/* Texto em gradiente rosé (preço, @) */
+@utility texto-rose {
+  background: var(--rose-texto);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility sem-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Foco visível em tudo que é navegável pelo teclado */
+:focus-visible {
+  outline: 2px solid var(--color-rosa-700);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
