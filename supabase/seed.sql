@@ -12,7 +12,7 @@ insert into public.categorias (nome, slug, ordem) values
 on conflict (slug) do nothing;
 
 insert into public.produtos (nome, descricao, categoria_id, preco, preco_antes, desconto, loja, link, foto_url, ordem, ativo, preco_manual, preco_atualizado_em)
-select v.nome, v.descricao, c.id, v.preco, v.preco_antes, v.desconto, v.loja, v.link, v.foto_url, v.ordem, v.ativo, v.loja ilike 'shopee', now()
+select v.nome, v.descricao::text, c.id, v.preco::numeric, v.preco_antes::numeric, v.desconto::int, v.loja, v.link, v.foto_url::text, v.ordem, v.ativo, v.loja ilike 'shopee', now()
 from (values
   ('Massageador facial com LED bivolt', null, 'skincare', null, null, null, 'Shopee', 'https://s.shopee.com.br/1gJL2UaVTD', 'https://down-br.img.susercontent.com/file/br-11134201-820mh-mqx3exgg3090de', 1, true),
   ('Óculos de sol gradiente retangular sem aro', null, 'acessorios', null, null, null, 'Shopee', 'https://s.shopee.com.br/3VkzDrTWka', 'https://down-br.img.susercontent.com/file/sg-11134301-7ra2l-mbnjlvip51sm72', 1, true),

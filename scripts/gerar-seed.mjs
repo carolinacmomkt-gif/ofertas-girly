@@ -28,7 +28,7 @@ const valores = produtos.map((p) => {
 });
 
 linhas.push('insert into public.produtos (nome, descricao, categoria_id, preco, preco_antes, desconto, loja, link, foto_url, ordem, ativo, preco_manual, preco_atualizado_em)');
-linhas.push('select v.nome, v.descricao, c.id, v.preco, v.preco_antes, v.desconto, v.loja, v.link, v.foto_url, v.ordem, v.ativo, v.loja ilike \'shopee\', now()');
+linhas.push('select v.nome, v.descricao::text, c.id, v.preco::numeric, v.preco_antes::numeric, v.desconto::int, v.loja, v.link, v.foto_url::text, v.ordem, v.ativo, v.loja ilike \'shopee\', now()');
 linhas.push('from (values');
 linhas.push(valores.join(',\n'));
 linhas.push(') as v(nome, descricao, categoria_slug, preco, preco_antes, desconto, loja, link, foto_url, ordem, ativo)');
