@@ -22,6 +22,7 @@ Stack: Next.js 15 (App Router) + TypeScript + Tailwind CSS 4 + Supabase (Postgre
 ├── scripts/gerar-seed.mjs           gera supabase/seed.sql a partir do JSON
 ├── supabase/
 │   ├── migrations/0001_schema.sql   tabelas, RLS, bucket "fotos"
+│   ├── migrations/0002_permissoes.sql libera as tabelas para a API (projetos novos)
 │   └── seed.sql                     seu e-mail de admin + 6 categorias + 12 produtos
 ├── netlify/functions/
 │   └── precos-agendados.mts         chama a rotina de preços a cada 10 min
@@ -59,6 +60,8 @@ Stack: Next.js 15 (App Router) + TypeScript + Tailwind CSS 4 + Supabase (Postgre
    região São Paulo, `sa-east-1`). Não use o projeto do primeiro site: cada site tem o seu banco, as suas fotos e os
    seus administradores.
 2. Abra **SQL Editor > New query**, cole todo o conteúdo de `supabase/migrations/0001_schema.sql` e clique em **Run**.
+   Depois, numa nova query, faça o mesmo com `supabase/migrations/0002_permissoes.sql`. Sem ele, projetos novos do
+   Supabase não deixam o site ler os produtos (a página mostra "Não deu para carregar os produtos agora").
 3. Numa nova query, cole `supabase/seed.sql` e rode. Isso libera `carolinacmomkt@gmail.com` como administradora e
    cria as 6 categorias (Beleza, Skincare, Moda, Acessórios, Casa, Papelaria) e os 12 produtos da Shopee.
 4. Crie o seu usuário em **Authentication > Users > Add user > Create new user** com o e-mail
